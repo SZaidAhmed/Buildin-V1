@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert" >{{ message }}</div>
+        {% endfor %}
+    
+    {% endif %}
+    {% endwith %}
+    <form action="/DlInputs" method="post" enctype="multipart/form-data">
+        <label>Model Name:</label>
+        <input type="text" name="name">
+        <label >Description:</label>
+        <input type="text" name="description">
+        <label >Training dataset</label>
+        <input type="file" accept='.csv' name="training">
+        <label> No of features</label>
+        <input type="number" name="NumberOfFeatues">
+        <p>Dense Number of Layers : </p>
+        <input class="input" name="NumberOfDenseLayer" type="number" placeholder="Enter Number Of Dense Layer You Want" required><br>
+        <p>Dense Layer Outputs : </p>
+        <input class="input" name="DenseLayersOutput" type="text" placeholder="Enter Output of layers with ',' seperated value" required><br>             
+        <p>Begining Layers Activation Function : </p>
+        <select class="input" name="BeginingActivation" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="relu">relu</option>
+            <option value="sigmoid">sigmoid</option>
+            <option value="softmax">softmax</option>
+        </select><br>
+        <p>End Layers Activation Function : </p>
+        <select class="input" name="EndActivation" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="relu">relu</option>
+            <option value="sigmoid">sigmoid</option>
+            <option value="softmax">softmax</option>
+        </select><br>
+        <p>Input Shape : </p>
+        <input class="input" type="text" name="InputShape"><br>
+        <p>Loss Function : </p>
+        <select class="input" name="LossFunction" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="binary_crossentropy">binary_crossentropy</option>
+            <option value="categorical_crossentropy">categorical_crossentropy</option>
+        </select><br>
+        <p>Batch Size : </p>
+        <input class="input" type="number" name="BatchSize" required><br>
+        <p>Epochs : </p>
+        <input class="input" type="number" name="Epochs"><br>
+        <br><input class="input" type="submit" style="color:green;font-weight: bold;background-color: rgb(168, 253, 211);" value="SUBMIT">
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+    
+    
+
+</body>
+</html>

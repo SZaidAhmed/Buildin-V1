@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Profile</h1>
+        {%block body%}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div role="alert" >{{ message }}</div>
+                {% endfor %}
+            
+            {% endif %}
+            {% endwith %}
+            {{data}}
+            <br>
+              <p>User name: {{data['name']}}</p>  
+              <p>gender: {{data['gender']}}</p>
+              <p>Location: {{data['location']}}</p>
+              {% if 'N/A' in data['profile'] %}
+                <img src="/static/default.jpg" alt="default" height="100px" width="100px">
+              {% endif %}
+              {% if 'N/A' not in data['profile'] %}
+                <img src="{{url_for('file',filename=data['email'])}}"   height="100px" width="100px">
+              {% endif %}
+              <br>
+                </legend>Deep Learning Models : {{data['Dl']}}
+                </legend>
+                <legend>
+                    Machine Learning Models : {{data['Ml']}}
+                </legend>
+                <legend>
+                    Total Train Models : {{data['Total']}}
+                </legend>
+                <legend>
+                    Email: {{data['email']}}
+                </legend>
+                <legend>
+                    Profile Name: {{data['name']}}
+                </legend>
+        {%endblock%}
+
+        <form action="/updateProfile" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <label >UserName: </label>
+            <input type="text" name="name">
+            <label >Gender</label>
+            <select name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label >Country</label>
+            <select name="location" >
+                <option value="Pakistan">Pakistan</option>
+                <option value="Surjani">Surjani</option>
+            </select>
+            <input type="submit" value="SUBMIT">
+        </form>
+        
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert" >{{ message }}</div>
+        {% endfor %}
+    
+    {% endif %}
+    {% endwith %}
+    <form action="/MlInputs" method="post" enctype="multipart/form-data">
+        <label >training dataset</label>
+        <input name="TrainingDataSet" type="file" accept=".zip" />
+        <Label>Validation Dataset</Label>
+        <input type="file" name="ValidationDataSet" accept=".zip">
+        <p>CNN Number of Layers : </p>
+        <input class="input" name="NumberOfCNNLayer" type="number" placeholder="Enter Number Of Conv2D Layer You Want" required><br>
+        <p>CNN Layer Outputs : </p>
+        <input class="input" name="CNNLayersOutput" type="text" placeholder="Enter Output of layers with ',' seperated value" required><br>       
+        <p>Dense Number of Layers : </p>
+        <input class="input" name="NumberOfDenseLayer" type="number" placeholder="Enter Number Of Dense Layer You Want" required><br>
+        <p>Dense Layer Outputs : </p>
+        <input class="input" name="DenseLayersOutput" type="text" placeholder="Enter Output of layers with ',' seperated value" required><br>             
+        <p>Begining Layers Activation Function : </p>
+        <select class="input" name="BeginingActivation" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="relu">relu</option>
+            <option value="sigmoid">sigmoid</option>
+            <option value="softmax">softmax</option>
+        </select><br>
+        <p>End Layers Activation Function : </p>
+        <select class="input" name="EndActivation" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="relu">relu</option>
+            <option value="sigmoid">sigmoid</option>
+            <option value="softmax">softmax</option>
+        </select><br>
+        <p>Input Shape : </p>
+        <input class="input" type="text" name="InputShape"><br>
+        <p>Loss Function : </p>
+        <select class="input" name="LossFunction" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="binary_crossentropy">binary_crossentropy</option>
+            <option value="categorical_crossentropy">categorical_crossentropy</option>
+        </select><br>
+        <p>Learning Rate : </p>
+        <input class="input" type="number" name="LearningRate" max="0" min="-10" required><br>
+        <p>Taget Size : </p>
+        <input class="input" type="text" name="TargetSize"><br>
+        <p>Class Mode : </p>
+        <select class="input" name="ClassMode" required>
+            <option value="none" style="color:red;">None</option>
+            <option value="binary">binary</option>
+            <option value="categorical">categorical</option>
+        </select><br>
+        <p>Batch Size : </p>
+        <input class="input" type="number" name="BatchSize" required><br>
+        <p>Epochs : </p>
+        <input class="input" type="number" name="Epochs"><br>
+        <p>Step Per Epoch : </p>
+        <input class="input" type="number" name="StepPerEpochs"><br>
+        <p>Validation Steps : </p>
+        <input class="input" type="number" name="ValidationSteps"><br>
+        <br><input class="input" type="submit" style="color:green;font-weight: bold;background-color: rgb(168, 253, 211);" value="SUBMIT">
+    
+    </form>
+</body>
+</html>

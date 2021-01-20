@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <table>
+        
+            {%block body%}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{category}}" role="alert" >{{ message }}</div>
+                {% endfor %}
+            
+            {% endif %}
+            {% endwith %}
+            <form action="/search" method="POST">
+                <input type="text" name="search">
+                <input type="submit" >
+            </form>
+            {%for doc in user_info%}
+            <tr>
+                <td>{{doc}}</td>
+                <td><a href="{{url_for('download' ,file =  doc['_id'])}}" download="model.h5" >download</a></td>
+
+            </tr>
+            {%endfor%} 
+            </table>
+            {%endblock%}
+    </div>
+    <a href="/MlForm">Machine Learning Inputs</a>
+    <br>
+    <a href="/DlForm">Deep Learning Inputs</a>
+    <a href="/Signout">Signout</a>
+</body>
+</html>

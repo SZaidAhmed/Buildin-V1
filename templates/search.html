@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%block body%}
+            
+            {%for doc in user_info%}
+            <tr>
+                <td>{{doc}}</td>
+                <td><a href="{{url_for('download' ,file =  doc['_id'])}}" download="model.h5" >download</a></td>
+
+            </tr>
+            {%endfor%} 
+            </table>
+            {%endblock%}
+    </div>
+</body>
+</html>
