@@ -368,6 +368,3 @@ def search():
             flash('no data found' , "info")
             return redirect(url_for('dashboard'))
         
-
-if __name__ == '__main__':
-    app.run(debug=True , port=3000)
